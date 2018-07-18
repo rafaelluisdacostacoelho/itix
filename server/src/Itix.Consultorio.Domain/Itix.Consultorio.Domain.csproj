@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Itix.Domain.Utilities\Itix.Domain.Utilities.csproj" />
+    <ProjectReference Include="..\Itix.Domain.Utilities\Itix.Domain.Utilities.csproj" />
   </ItemGroup>
 
 </Project>
