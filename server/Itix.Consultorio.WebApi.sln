@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itix.Consultorio.Domain", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itix.Consultorio.Infrastructure", "src\Itix.Consultorio.Infrastructure\Itix.Consultorio.Infrastructure.csproj", "{858DBCBE-560B-4E37-8E55-2F731AA1A43E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itix.Domain.Utilities", "Itix.Domain.Utilities\Itix.Domain.Utilities.csproj", "{988B8AF7-6AD3-40BF-B36E-C14A00C50C2B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itix.Domain.Utilities", "src\Itix.Domain.Utilities\Itix.Domain.Utilities.csproj", "{988B8AF7-6AD3-40BF-B36E-C14A00C50C2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
