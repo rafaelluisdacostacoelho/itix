@@ -1,6 +1,0 @@
-C:\Repositórios\Bitbucket\itix\server\src\Itix.Consultorio.Application\bin\Debug\netcoreapp2.1\Itix.Consultorio.Domain.dll
-C:\Repositórios\Bitbucket\itix\server\src\Itix.Consultorio.Application\bin\Debug\netcoreapp2.1\Itix.Consultorio.Infrastructure.dll
-C:\Repositórios\Bitbucket\itix\server\src\Itix.Consultorio.Application\obj\Debug\netcoreapp2.1\Itix.Consultorio.Application.csprojAssemblyReference.cache
-C:\Repositórios\Bitbucket\itix\server\src\Itix.Consultorio.Application\obj\Debug\netcoreapp2.1\Itix.Consultorio.Application.csproj.CoreCompileInputs.cache
-C:\Repositórios\Bitbucket\itix\server\src\Itix.Consultorio.Application\obj\Debug\netcoreapp2.1\Itix.Consultorio.Application.AssemblyInfoInputs.cache
-C:\Repositórios\Bitbucket\itix\server\src\Itix.Consultorio.Application\obj\Debug\netcoreapp2.1\Itix.Consultorio.Application.AssemblyInfo.cs
