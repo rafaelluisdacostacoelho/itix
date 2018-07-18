@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  itix.consultorio.webapi:
+    image: ${DOCKER_REGISTRY}itixconsultoriowebapi
+    build:
+      context: .
+      dockerfile: Itix.Consultorio.WebApi\Dockerfile
