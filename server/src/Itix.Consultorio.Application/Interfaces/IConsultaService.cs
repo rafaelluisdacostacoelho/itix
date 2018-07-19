@@ -8,9 +8,9 @@ namespace Itix.Consultorio.Application.Interfaces
     public interface IConsultaService
     {
         IEnumerable<ConsultaResponse> Read();
-        ConsultaResponse Read(Guid id);
-        Guid Create(ConsultaRequest request);
-        void Update(Guid id, ConsultaRequest request);
-        void Delete(Guid id);
+        ConsultaResponse Read(int id);
+        int Create(ConsultaRequest request);
+        void Update(int id, ConsultaRequest request);
+        void Delete(int id);
     }
 }

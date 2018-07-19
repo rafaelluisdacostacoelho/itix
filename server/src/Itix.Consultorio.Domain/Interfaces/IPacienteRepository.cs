@@ -1,6 +1,18 @@
-﻿namespace Itix.Consultorio.Domain.Interfaces
+﻿using Itix.Consultorio.Domain.Entities;
+using System.Collections.Generic;
+
+namespace Itix.Consultorio.Domain.Interfaces
 {
     public interface IPacienteRepository
     {
+        int Create(Paciente paciente);
+
+        IEnumerable<Paciente> Read();
+
+        Paciente Read(int id);
+
+        void Update(Paciente paciente);
+
+        void Delete(int id);
     }
 }

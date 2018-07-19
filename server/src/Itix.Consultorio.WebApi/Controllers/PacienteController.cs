@@ -2,7 +2,6 @@
 using Itix.Consultorio.Application.Models.Requests;
 using Itix.Consultorio.Application.Models.Responses;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 
 namespace Itix.Consultorio.WebApi.Controllers
@@ -29,7 +28,7 @@ namespace Itix.Consultorio.WebApi.Controllers
 
         // GET api/pacientes/{id}
         [HttpGet("{id}")]
-        public ActionResult<string> Read(Guid id)
+        public ActionResult<string> Read(int id)
         {
             PacienteResponse paciente = pacienteService.Read(id);
 
@@ -40,21 +39,21 @@ namespace Itix.Consultorio.WebApi.Controllers
         [HttpPost]
         public IActionResult Create([FromBody]PacienteRequest request)
         {
-            Guid id = pacienteService.Create(request);
+            int id = pacienteService.Create(request);
 
             return Ok(id);
         }
 
         // PUT api/pacientes/{id}
         [HttpPut("{id}")]
-        public void Update(Guid id, [FromBody]PacienteRequest request)
+        public void Update(int id, [FromBody]PacienteRequest request)
         {
             pacienteService.Update(id, request);
         }
 
         // DELETE api/pacientes/{id}
         [HttpDelete("{id}")]
-        public void Delete(Guid id)
+        public void Delete(int id)
         {
             pacienteService.Delete(id);
         }

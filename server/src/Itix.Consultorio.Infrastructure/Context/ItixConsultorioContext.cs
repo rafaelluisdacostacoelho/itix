@@ -6,11 +6,7 @@ namespace Itix.Consultorio.Infrastructure.Context
 {
     public class ItixConsultorioContext : IDisposable
     {
-        private readonly string server = "127.0.0.1";
-        private readonly string database = "Itix";
-        private readonly string password = "itix";
-        private readonly string user = "root";
-        private readonly string port = "3306";
+        private readonly string connectionString = @"Data Source=PC-RAFAEL;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True";
 
         public IDbConnection Connection { get; }
 
@@ -18,7 +14,7 @@ namespace Itix.Consultorio.Infrastructure.Context
         {
             try
             {
-                Connection = new SqlConnection($"Server={server};Database={database};User ID={user};Password={password};Port={port};");
+                Connection = new SqlConnection(connectionString);
                 Connection.Open();
             }
             catch (SqlException exception)

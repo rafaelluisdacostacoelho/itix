@@ -1,36 +1,74 @@
 ﻿using Itix.Consultorio.Application.Interfaces;
 using Itix.Consultorio.Application.Models.Requests;
 using Itix.Consultorio.Application.Models.Responses;
-using System;
+using Itix.Consultorio.Domain.Entities;
+using Itix.Consultorio.Domain.InterfacesPaciente;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Itix.Consultorio.Application.Services
 {
     public class ConsultaService : IConsultaService
     {
-        public Guid Create(ConsultaRequest request)
+        private readonly IConsultaRepository consultaRepository;
+
+        public ConsultaService(IConsultaRepository consultaRepository)
         {
-            throw new NotImplementedException();
+            this.consultaRepository = consultaRepository;
         }
 
-        public void Delete(Guid id)
+        public int Create(ConsultaRequest consulta)
         {
-            throw new NotImplementedException();
+            return consultaRepository.Create(new Consulta
+            {
+                Observacoes = consulta.Observacoes,
+                DataInicial = consulta.DataInicial,
+                DataFinal = consulta.DataFinal,
+                PacienteId = consulta.PacienteId
+            });
         }
 
         public IEnumerable<ConsultaResponse> Read()
         {
-            throw new NotImplementedException();
+            return consultaRepository
+                .Read()
+                .Select(consulta => new ConsultaResponse
+                {
+                    Id = consulta.Id,
+                    Observacoes = consulta.Observacoes,
+                    DataInicial = consulta.DataInicial,
+                    DataFinal = consulta.DataFinal
+                });
         }
 
-        public ConsultaResponse Read(Guid id)
+        public ConsultaResponse Read(int id)
         {
-            throw new NotImplementedException();
+            dynamic consulta = consultaRepository.Read();
+
+            return new ConsultaResponse
+            {
+                Id = consulta.Id,
+                Observacoes = consulta.Observacoes,
+                DataInicial = consulta.DataInicial,
+                DataFinal = consulta.DataFinal,
+                PacienteId = consulta.PacienteId
+            };
         }
 
-        public void Update(Guid id, ConsultaRequest request)
+        public void Update(int id, ConsultaRequest consulta)
         {
-            throw new NotImplementedException();
+            consultaRepository.Update(new Consulta
+            {
+                Id = id,
+                Observacoes = consulta.Observacoes,
+                DataInicial = consulta.DataInicial,
+                DataFinal = consulta.DataFinal
+            });
+        }
+
+        public void Delete(int id)
+        {
+            consultaRepository.Delete(id);
         }
     }
 }

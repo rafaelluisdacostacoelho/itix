@@ -4,12 +4,12 @@ namespace Itix.Consultorio.Domain.Entities
 {
     public class Consulta
     {
-        public Guid Id { get; set; }
-        public string Descricao { get; set; }
-        public DateTime DataDeInicio { get; set; }
-        public DateTime DataDeFim { get; set; }
+        public int Id { get; set; }
+        public string Observacoes { get; set; }
+        public DateTime DataInicial { get; set; }
+        public DateTime DataFinal { get; set; }
 
-        public Guid PacienteId { get; set; }
+        public int PacienteId { get; set; }
         public Paciente Paciente { get; set; }
     }
 }

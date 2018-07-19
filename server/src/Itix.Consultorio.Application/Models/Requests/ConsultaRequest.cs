@@ -7,5 +7,6 @@ namespace Itix.Consultorio.Application.Models.Requests
         public DateTime DataInicial { get; set; }
         public DateTime DataFinal { get; set; }
         public string Observacoes { get; set; }
+        public int PacienteId { get; set; }
     }
 }

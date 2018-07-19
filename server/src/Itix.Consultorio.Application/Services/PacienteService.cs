@@ -1,36 +1,68 @@
 ﻿using Itix.Consultorio.Application.Interfaces;
 using Itix.Consultorio.Application.Models.Requests;
 using Itix.Consultorio.Application.Models.Responses;
-using System;
+using Itix.Consultorio.Domain.Entities;
+using Itix.Consultorio.Domain.Interfaces;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Itix.Consultorio.Application.Services
 {
     public class PacienteService : IPacienteService
     {
-        public Guid Create(PacienteRequest request)
+        private readonly IPacienteRepository pacienteRepository;
+
+        public PacienteService(IPacienteRepository pacienteRepository)
         {
-            throw new NotImplementedException();
+            this.pacienteRepository = pacienteRepository;
+        }
+
+        public int Create(PacienteRequest request)
+        {
+            return pacienteRepository.Create(new Paciente
+            {
+                Nome = request.Nome,
+                Nascimento = request.Nascimento
+            });
         }
 
         public IEnumerable<PacienteResponse> Read()
         {
-            throw new NotImplementedException();
+            return pacienteRepository
+                .Read()
+                .Select(paciente => new PacienteResponse
+                {
+                    Id = paciente.Id,
+                    Nome = paciente.Nome,
+                    Nascimento = paciente.Nascimento
+                });
         }
 
-        public PacienteResponse Read(Guid id)
+        public PacienteResponse Read(int id)
         {
-            throw new NotImplementedException();
+            dynamic paciente = pacienteRepository.Read();
+
+            return new PacienteResponse
+            {
+                Id = paciente.Id,
+                Nome = paciente.Nome,
+                Nascimento = paciente.Nascimento
+            };
         }
 
-        public void Update(Guid id, PacienteRequest request)
+        public void Update(int id, PacienteRequest request)
         {
-            throw new NotImplementedException();
+            pacienteRepository.Update(new Paciente
+            {
+                Id = id,
+                Nome = request.Nome,
+                Nascimento = request.Nascimento
+            });
         }
 
-        public void Delete(Guid id)
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            pacienteRepository.Delete(id);
         }
     }
 }

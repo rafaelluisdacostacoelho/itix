@@ -1,6 +1,7 @@
 ﻿using Itix.Consultorio.Application.Interfaces;
 using Itix.Consultorio.Application.Services;
 using Itix.Consultorio.Domain.Interfaces;
+using Itix.Consultorio.Domain.InterfacesPaciente;
 using Itix.Consultorio.Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 

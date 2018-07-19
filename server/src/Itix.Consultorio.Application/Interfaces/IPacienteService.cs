@@ -8,9 +8,9 @@ namespace Itix.Consultorio.Application.Interfaces
     public interface IPacienteService
     {
         IEnumerable<PacienteResponse> Read();
-        PacienteResponse Read(Guid id);
-        Guid Create(PacienteRequest request);
-        void Update(Guid id, PacienteRequest request);
-        void Delete(Guid id);
+        PacienteResponse Read(int id);
+        int Create(PacienteRequest request);
+        void Update(int id, PacienteRequest request);
+        void Delete(int id);
     }
 }
