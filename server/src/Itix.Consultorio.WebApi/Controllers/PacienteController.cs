@@ -1,42 +1,62 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Itix.Consultorio.Application.Interfaces;
+using Itix.Consultorio.Application.Models.Requests;
+using Itix.Consultorio.Application.Models.Responses;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace Itix.Consultorio.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/pacientes")]
     [ApiController]
     public class PacienteController : ControllerBase
     {
-        // GET api/values
+        private readonly IPacienteService pacienteService;
+
+        public PacienteController(IPacienteService pacienteService)
+        {
+            this.pacienteService = pacienteService;
+        }
+
+        // GET api/pacientes
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public IActionResult Read()
         {
-            return new string[] { "value1", "value2" };
+            IEnumerable<PacienteResponse> pacientes = pacienteService.Read();
+
+            return Ok(pacientes);
         }
 
-        // GET api/values/5
+        // GET api/pacientes/{id}
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<string> Read(Guid id)
         {
-            return "value";
+            PacienteResponse paciente = pacienteService.Read(id);
+
+            return Ok();
         }
 
-        // POST api/values
+        // POST api/pacientes
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Create([FromBody]PacienteRequest request)
         {
+            Guid id = pacienteService.Create(request);
+
+            return Ok(id);
         }
 
-        // PUT api/values/5
+        // PUT api/pacientes/{id}
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Update(Guid id, [FromBody]PacienteRequest request)
         {
+            pacienteService.Update(id, request);
         }
 
-        // DELETE api/values/5
+        // DELETE api/pacientes/{id}
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
+            pacienteService.Delete(id);
         }
     }
 }

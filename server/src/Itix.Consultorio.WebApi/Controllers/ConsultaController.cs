@@ -1,42 +1,62 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Itix.Consultorio.Application.Interfaces;
+using Itix.Consultorio.Application.Models.Requests;
+using Itix.Consultorio.Application.Models.Responses;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace Itix.Consultorio.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/consultas")]
     [ApiController]
     public class ConsultaController : ControllerBase
     {
-        // GET api/values
+        private readonly IConsultaService consultaService;
+
+        public ConsultaController(IConsultaService consultaService)
+        {
+            this.consultaService = consultaService;
+        }
+
+        // GET api/consultas
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public IActionResult Read()
         {
-            return new string[] { "value1", "value2" };
+            IEnumerable<ConsultaResponse> consultas = consultaService.Read();
+
+            return Ok(consultas);
         }
 
-        // GET api/values/5
+        // GET api/consultas/{id}
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<string> Read(Guid id)
         {
-            return "value";
+            ConsultaResponse consulta = consultaService.Read(id);
+
+            return Ok();
         }
 
-        // POST api/values
+        // POST api/consultas
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Create([FromBody]ConsultaRequest request)
         {
+            Guid id = consultaService.Create(request);
+
+            return Ok(id);
         }
 
-        // PUT api/values/5
+        // PUT api/consultas/{id}
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Update(Guid id, [FromBody]ConsultaRequest request)
         {
+            consultaService.Update(id, request);
         }
 
-        // DELETE api/values/5
+        // DELETE api/consultas/{id}
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
+            consultaService.Delete(id);
         }
     }
 }

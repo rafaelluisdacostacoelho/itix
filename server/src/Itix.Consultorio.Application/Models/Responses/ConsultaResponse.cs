@@ -1,6 +1,6 @@
 ﻿namespace Itix.Consultorio.Application.Models.Responses
 {
-    public class AgendaResponse
+    public class ConsultaResponse
     {
     }
 }
