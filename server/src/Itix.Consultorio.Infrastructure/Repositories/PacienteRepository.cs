@@ -25,12 +25,11 @@ namespace Itix.Consultorio.Infrastructure.Repositories
             parameters.Add("Nascimento", paciente.Nascimento);
 
             string query = @"
-                INSERT INTO [Itix.Consultorio].[dbo].[Pacientes]
-                    ([Nome], [Nascimento])
-                VALUES
-                    (?Nome, ?Nascimento)";
+                INSERT INTO [Itix].[Consultorio].[Pacientes] ([Nome], [Nascimento])
+                OUTPUT INSERTED.[Id]
+                VALUES (@Nome, @Nascimento)";
 
-            return Context.Connection.Execute(query, parameters);
+            return Context.Connection.QuerySingle<int>(query, parameters);
         }
 
         public IEnumerable<Paciente> Read()
@@ -39,7 +38,7 @@ namespace Itix.Consultorio.Infrastructure.Repositories
                 SELECT [Id],
                        [Nome],
                        [Nascimento]
-                  FROM [Itix.Consultorio].[dbo].[Pacientes]
+                  FROM [Itix].[Consultorio].[Pacientes]
                  ORDER BY [Nome]";
 
             var pacientes = Context
@@ -65,12 +64,12 @@ namespace Itix.Consultorio.Infrastructure.Repositories
                 SELECT [Id],
                        [Nome],
                        [Nascimento]
-                  FROM [Itix.Consultorio].[dbo].[Pacientes]
-                 WHERE [Id] = ?Id";
+                  FROM [Itix].[Consultorio].[Pacientes]
+                 WHERE [Id] = @Id";
 
             var paciente = Context
                 .Connection
-                .QuerySingleOrDefault<dynamic>(query, parameters);
+                .QuerySingle<dynamic>(query, parameters);
 
             return new Paciente
             {
@@ -90,14 +89,14 @@ namespace Itix.Consultorio.Infrastructure.Repositories
 
             if (!string.IsNullOrWhiteSpace(paciente.Nome))
             {
-                clauses.Add("[Nome] = ?Nome");
+                clauses.Add("[Nome] = @Nome");
                 parameters.Add("Nome", paciente.Nome);
             }
 
             string query = $@"
-                    UPDATE [Itix.Consultorio].[dbo].[Pacientes]
+                    UPDATE [Itix].[Consultorio].[Pacientes]
                        SET {string.Join(", ", clauses)}
-                     WHERE [Id] = ?Id";
+                     WHERE [Id] = @Id";
 
             Context.Connection.Execute(query, parameters);
         }
@@ -108,7 +107,7 @@ namespace Itix.Consultorio.Infrastructure.Repositories
 
             parameters.Add("Id", id);
 
-            string query = "DELETE FROM [Itix.Consultorio].[dbo].[Pacientes] WHERE [Id] = ?Id";
+            string query = "DELETE FROM [Itix].[Consultorio].[Pacientes] WHERE [Id] = @Id";
 
             Context.Connection.Execute(query, parameters);
         }

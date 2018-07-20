@@ -40,7 +40,7 @@ namespace Itix.Consultorio.Application.Services
 
         public PacienteResponse Read(int id)
         {
-            dynamic paciente = pacienteRepository.Read();
+            dynamic paciente = pacienteRepository.Read(id);
 
             return new PacienteResponse
             {

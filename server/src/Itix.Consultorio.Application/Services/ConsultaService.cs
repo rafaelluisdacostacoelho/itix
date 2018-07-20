@@ -43,7 +43,7 @@ namespace Itix.Consultorio.Application.Services
 
         public ConsultaResponse Read(int id)
         {
-            dynamic consulta = consultaRepository.Read();
+            dynamic consulta = consultaRepository.Read(id);
 
             return new ConsultaResponse
             {

@@ -8,11 +8,11 @@ namespace Itix.Consultorio.WebApi.Controllers
 {
     [Route("api/consultas")]
     [ApiController]
-    public class ConsultaController : ControllerBase
+    public class ConsultasController : ControllerBase
     {
         private readonly IConsultaService consultaService;
 
-        public ConsultaController(IConsultaService consultaService)
+        public ConsultasController(IConsultaService consultaService)
         {
             this.consultaService = consultaService;
         }
@@ -32,7 +32,7 @@ namespace Itix.Consultorio.WebApi.Controllers
         {
             ConsultaResponse consulta = consultaService.Read(id);
 
-            return Ok();
+            return Ok(consulta);
         }
 
         // POST api/consultas

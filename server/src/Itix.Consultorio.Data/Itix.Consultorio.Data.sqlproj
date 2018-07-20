@@ -12,8 +12,8 @@
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>Itix.Consultorio.Database</RootNamespace>
-    <AssemblyName>Itix.Consultorio.Database</AssemblyName>
+    <RootNamespace>Itix.Consultorio.Data</RootNamespace>
+    <AssemblyName>Itix.Consultorio.Data</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -25,7 +25,7 @@
     <TargetDatabaseSet>True</TargetDatabaseSet>
     <DefaultSchema>Itix</DefaultSchema>
     <GenerateCreateScript>False</GenerateCreateScript>
-    <IncludeSchemaNameInFileName>False</IncludeSchemaNameInFileName>
+    <IncludeSchemaNameInFileName>True</IncludeSchemaNameInFileName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -63,6 +63,10 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Pacientes.sql" />
-    <Build Include="Consulta.sql" />
+    <Build Include="Consultas.sql" />
+    <Build Include="Esquema.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Itix.Consultorio.Data.publish.xml" />
   </ItemGroup>
 </Project>
