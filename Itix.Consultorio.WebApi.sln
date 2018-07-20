@@ -1,15 +1,14 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Itix.Consultorio.WebApi", "src\Itix.Consultorio.WebApi\Itix.Consultorio.WebApi.csproj", "{1B14499C-8632-4AAF-A61B-47EAB7B5360D}"
-EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{02674D0D-39DF-4FBD-BBD0-37C34F9C0DCE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{3FE48C41-F585-41FE-89C2-9DFD97E6A91F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{29898141-6F02-4D1A-BBA8-9BABEA587A85}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Itix.Consultorio.WebApi", "src\Itix.Consultorio.WebApi\Itix.Consultorio.WebApi.csproj", "{1B14499C-8632-4AAF-A61B-47EAB7B5360D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Itix.Consultorio.WebApi.UnitTests", "tests\Itix.Consultorio.WebApi.UnitTests\Itix.Consultorio.WebApi.UnitTests.csproj", "{9B3AE486-0A3B-49AE-9B80-1B093724B9F7}"
 EndProject
