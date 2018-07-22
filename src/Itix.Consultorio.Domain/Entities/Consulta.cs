@@ -10,6 +10,5 @@ namespace Itix.Consultorio.Domain.Entities
         public DateTime DataFinal { get; set; }
 
         public int PacienteId { get; set; }
-        public Paciente Paciente { get; set; }
     }
 }

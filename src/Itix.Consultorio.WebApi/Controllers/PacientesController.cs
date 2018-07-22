@@ -1,11 +1,13 @@
 ﻿using Itix.Consultorio.Application.Interfaces;
 using Itix.Consultorio.Application.Models.Requests;
 using Itix.Consultorio.Application.Models.Responses;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
 namespace Itix.Consultorio.WebApi.Controllers
 {
+    [EnableCors("AllowAll")]
     [Route("api/pacientes")]
     [ApiController]
     public class PacientesController : ControllerBase

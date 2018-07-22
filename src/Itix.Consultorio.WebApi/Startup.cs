@@ -33,6 +33,16 @@ namespace Itix.Consultorio.WebApi
                 c.SwaggerDoc("v1", new Info { Title = "Itix Consultório", Version = "v1" });
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", builder =>
+                    builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                );
+            });
+
             // Application - Register Services
             Injection.RegisterServices(services);
         }
@@ -59,6 +69,8 @@ namespace Itix.Consultorio.WebApi
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Itix Consultório API V1");
             });
+
+            app.UseCors(builder => builder.WithOrigins().AllowAnyHeader());
         }
     }
 }
