@@ -2,6 +2,8 @@
 
 Trabalhe Conosco - Desafio 01
 
+Este projeto trabalha em conjunto com o projeto [Itix Client](https://github.com/rafaelluisdacostacoelho/itix-client).
+
 # Considerações sobre o projeto
 
 O projeto ainda pode ser melhorado em muitos pontos.
