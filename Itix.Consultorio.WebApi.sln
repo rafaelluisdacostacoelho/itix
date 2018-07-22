@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{02674D0D-39DF-4FBD-BBD0-37C34F9C0DCE}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{3FE48C41-F585-41FE-89C2-9DFD97E6A91F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{29898141-6F02-4D1A-BBA8-9BABEA587A85}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{8CBC0C4E-E94A-4EE3-924B-02013DD45921}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Itix.Consultorio.WebApi", "src\Itix.Consultorio.WebApi\Itix.Consultorio.WebApi.csproj", "{1B14499C-8632-4AAF-A61B-47EAB7B5360D}"
 EndProject
@@ -31,7 +31,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Itix.Consultorio.Applicatio
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Itix.Consultorio.Data", "src\Itix.Consultorio.Data\Itix.Consultorio.Data.sqlproj", "{CB5CF573-EE0C-4826-98C9-42F1E65DBAA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itix.Consultorio.CrossCutting", "src\Itix.Consultorio.CrossCutting\Itix.Consultorio.CrossCutting.csproj", "{36253AD4-CE50-4E95-A1DE-6CF9F0E598EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Itix.Consultorio.CrossCutting", "src\Itix.Consultorio.CrossCutting\Itix.Consultorio.CrossCutting.csproj", "{36253AD4-CE50-4E95-A1DE-6CF9F0E598EB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Itix.Consultorio.Security", "src\Itix.Consultorio.Security\Itix.Consultorio.Security.csproj", "{B697B060-7F52-4D1C-BDE2-4FC5FB4F7D16}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker\docker-compose.dcproj", "{02674D0D-39DF-4FBD-BBD0-37C34F9C0DCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,11 +97,16 @@ Global
 		{36253AD4-CE50-4E95-A1DE-6CF9F0E598EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36253AD4-CE50-4E95-A1DE-6CF9F0E598EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36253AD4-CE50-4E95-A1DE-6CF9F0E598EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B697B060-7F52-4D1C-BDE2-4FC5FB4F7D16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B697B060-7F52-4D1C-BDE2-4FC5FB4F7D16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B697B060-7F52-4D1C-BDE2-4FC5FB4F7D16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B697B060-7F52-4D1C-BDE2-4FC5FB4F7D16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{02674D0D-39DF-4FBD-BBD0-37C34F9C0DCE} = {8CBC0C4E-E94A-4EE3-924B-02013DD45921}
 		{1B14499C-8632-4AAF-A61B-47EAB7B5360D} = {29898141-6F02-4D1A-BBA8-9BABEA587A85}
 		{9B3AE486-0A3B-49AE-9B80-1B093724B9F7} = {3FE48C41-F585-41FE-89C2-9DFD97E6A91F}
 		{F63E904E-5642-490F-BCE6-19981DC04454} = {29898141-6F02-4D1A-BBA8-9BABEA587A85}
@@ -110,6 +119,7 @@ Global
 		{3EB0C018-0BEA-4106-8848-2F10FF29047D} = {3FE48C41-F585-41FE-89C2-9DFD97E6A91F}
 		{CB5CF573-EE0C-4826-98C9-42F1E65DBAA1} = {29898141-6F02-4D1A-BBA8-9BABEA587A85}
 		{36253AD4-CE50-4E95-A1DE-6CF9F0E598EB} = {29898141-6F02-4D1A-BBA8-9BABEA587A85}
+		{B697B060-7F52-4D1C-BDE2-4FC5FB4F7D16} = {29898141-6F02-4D1A-BBA8-9BABEA587A85}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {46AEE52D-6F0A-442F-96D0-26D298872DCB}

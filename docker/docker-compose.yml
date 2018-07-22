@@ -5,4 +5,4 @@ services:
     image: ${DOCKER_REGISTRY}itixconsultoriowebapi
     build:
       context: .
-      dockerfile: src\Itix.Consultorio.WebApi\Dockerfile
+      dockerfile: ..\src\Itix.Consultorio.WebApi\Dockerfile
