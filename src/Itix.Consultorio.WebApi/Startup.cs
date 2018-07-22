@@ -1,4 +1,4 @@
-﻿using Itix.Consultorio.Application;
+﻿using Itix.Consultorio.CrossCutting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -30,13 +30,14 @@ namespace Itix.Consultorio.WebApi
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "Itix Consultório", Version = "v1" });
+                c.SwaggerDoc("v1", new Info { Title = "Consultório Itix", Version = "v1" });
             });
 
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAll", builder =>
+                options.AddPolicy("AllowSpecificOrigins", builder =>
                     builder
+                        .WithOrigins("http://localhost.8000", "https://itix-client.herokuapp.com")
                         .AllowAnyOrigin()
                         .AllowAnyMethod()
                         .AllowAnyHeader()
@@ -67,10 +68,10 @@ namespace Itix.Consultorio.WebApi
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Itix Consultório API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Consultório Itix API v1");
             });
 
-            app.UseCors(builder => builder.WithOrigins().AllowAnyHeader());
+            app.UseCors("AllowSpecificOrigins");
         }
     }
 }

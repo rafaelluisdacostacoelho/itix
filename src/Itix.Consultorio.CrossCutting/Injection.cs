@@ -5,7 +5,7 @@ using Itix.Consultorio.Domain.InterfacesPaciente;
 using Itix.Consultorio.Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Itix.Consultorio.Application
+namespace Itix.Consultorio.CrossCutting
 {
     public class Injection
     {

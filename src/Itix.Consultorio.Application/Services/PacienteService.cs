@@ -3,8 +3,8 @@ using Itix.Consultorio.Application.Models.Requests;
 using Itix.Consultorio.Application.Models.Responses;
 using Itix.Consultorio.Domain.Entities;
 using Itix.Consultorio.Domain.Interfaces;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Itix.Consultorio.Application.Services
 {
@@ -17,9 +17,9 @@ namespace Itix.Consultorio.Application.Services
             this.pacienteRepository = pacienteRepository;
         }
 
-        public int Create(PacienteRequest request)
+        public void Create(PacienteRequest request)
         {
-            return pacienteRepository.Create(new Paciente
+            pacienteRepository.Create(new Paciente
             {
                 Nome = request.Nome,
                 Nascimento = request.Nascimento

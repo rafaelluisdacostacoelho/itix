@@ -17,7 +17,7 @@ namespace Itix.Consultorio.Infrastructure.Repositories
             Context = new ItixConsultorioContext();
         }
 
-        public int Create(Consulta consulta)
+        public void Create(Consulta consulta)
         {
             DynamicParameters parameters = new DynamicParameters();
 
@@ -26,19 +26,18 @@ namespace Itix.Consultorio.Infrastructure.Repositories
             parameters.Add("DataFinal", consulta.DataFinal);
             parameters.Add("PacienteId", consulta.PacienteId);
 
-            string query = @"
+            const string query = @"
                 INSERT INTO [Itix].[Consultorio].[Consultas]
                     ([Observacoes], [DataInicial], [DataFinal], [PacienteId])
-                OUTPUT INSERTED.[Id]
                 VALUES
                     (@Observacoes, @DataInicial, @DataFinal, @PacienteId)";
 
-            return Context.Connection.QuerySingle<int>(query, parameters);
+            Context.Connection.Execute(query, parameters);
         }
 
         public IEnumerable<Consulta> Read()
         {
-            string query = @"
+            const string query = @"
                 SELECT [Id],
                        [Observacoes],
                        [DataInicial],
@@ -68,7 +67,7 @@ namespace Itix.Consultorio.Infrastructure.Repositories
 
             parameters.Add("Id", id);
 
-            string query = $@"
+            const string query = @"
                 SELECT [Id],
                        [Observacoes],
                        [DataInicial],
@@ -97,28 +96,18 @@ namespace Itix.Consultorio.Infrastructure.Repositories
 
             parameters.Add("Id", consulta.Id);
 
-            List<string> clauses = new List<string>();
+            parameters.Add("Observacoes", consulta.Observacoes);
+            parameters.Add("DataInicial", consulta.DataInicial);
+            parameters.Add("DataFinal", consulta.DataFinal);
+            parameters.Add("PacienteId", consulta.PacienteId);
 
-            if (!string.IsNullOrWhiteSpace(consulta.Observacoes))
-            {
-                clauses.Add("[Observacoes] = @Observacoes");
-                parameters.Add("Observacoes", consulta.Observacoes);
-            }
-            if (consulta.DataInicial != null)
-            {
-                clauses.Add("[DataInicial] = @DataInicial");
-                parameters.Add("DataInicial", consulta.DataInicial);
-            }
-            if (consulta.DataFinal != null)
-            {
-                clauses.Add("[DataFinal] = @DataFinal");
-                parameters.Add("DataFinal", consulta.DataFinal);
-            }
-
-            string query = $@"
-                    UPDATE [Itix].[Consultorio].[Consultas]
-                       SET {string.Join(", ", clauses)}
-                     WHERE [Id] = @Id";
+            const string query = @"
+                UPDATE [Itix].[Consultorio].[Consultas]
+                    SET [PacienteId] = @PacienteId,
+                        [DataFinal] = @DataFinal,
+                        [DataInicial] = @DataInicial,
+                        [Observacoes] = @Observacoes
+                    WHERE [Id] = @Id";
 
             Context.Connection.Execute(query, parameters);
         }
@@ -129,7 +118,7 @@ namespace Itix.Consultorio.Infrastructure.Repositories
 
             parameters.Add("Id", id);
 
-            string query = "DELETE FROM [Itix].[Consultorio].[Consultas] WHERE [Id] = @Id";
+            const string query = "DELETE FROM [Itix].[Consultorio].[Consultas] WHERE [Id] = @Id";
 
             Context.Connection.Execute(query, parameters);
         }

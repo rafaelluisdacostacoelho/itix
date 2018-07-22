@@ -7,9 +7,9 @@ using System.Collections.Generic;
 
 namespace Itix.Consultorio.WebApi.Controllers
 {
-    [EnableCors("AllowAll")]
     [Route("api/consultas")]
     [ApiController]
+    [EnableCors("AllowSpecificOrigins")]
     public class ConsultasController : ControllerBase
     {
         private readonly IConsultaService consultaService;
@@ -30,7 +30,7 @@ namespace Itix.Consultorio.WebApi.Controllers
 
         // GET api/consultas/{id}
         [HttpGet("{id}")]
-        public ActionResult<string> Read(int id)
+        public IActionResult Read(int id)
         {
             ConsultaResponse consulta = consultaService.Read(id);
 
@@ -39,11 +39,9 @@ namespace Itix.Consultorio.WebApi.Controllers
 
         // POST api/consultas
         [HttpPost]
-        public IActionResult Create([FromBody]ConsultaRequest request)
+        public void Create([FromBody]ConsultaRequest request)
         {
-            int id = consultaService.Create(request);
-
-            return Ok(id);
+            consultaService.Create(request);
         }
 
         // PUT api/consultas/{id}

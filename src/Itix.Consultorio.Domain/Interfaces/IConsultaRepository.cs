@@ -5,7 +5,7 @@ namespace Itix.Consultorio.Domain.InterfacesPaciente
 {
     public interface IConsultaRepository
     {
-        int Create(Consulta consulta);
+        void Create(Consulta consulta);
 
         IEnumerable<Consulta> Read();
 

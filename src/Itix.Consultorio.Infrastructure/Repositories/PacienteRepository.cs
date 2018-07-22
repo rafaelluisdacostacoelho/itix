@@ -17,33 +17,32 @@ namespace Itix.Consultorio.Infrastructure.Repositories
             Context = new ItixConsultorioContext();
         }
 
-        public int Create(Paciente paciente)
+        public void Create(Paciente paciente)
         {
             DynamicParameters parameters = new DynamicParameters();
 
             parameters.Add("Nome", paciente.Nome);
             parameters.Add("Nascimento", paciente.Nascimento);
 
-            string query = @"
-                INSERT INTO [Itix].[Consultorio].[Pacientes] ([Nome], [Nascimento])
-                OUTPUT INSERTED.[Id]
-                VALUES (@Nome, @Nascimento)";
+            const string query = @"
+                INSERT INTO [Itix].[Consultorio].[Pacientes]
+                    ([Nome], [Nascimento])
+                VALUES
+                    (@Nome, @Nascimento)";
 
-            return Context.Connection.QuerySingle<int>(query, parameters);
+            Context.Connection.Execute(query, parameters);
         }
 
         public IEnumerable<Paciente> Read()
         {
-            string query = @"
+            const string query = @"
                 SELECT [Id],
                        [Nome],
                        [Nascimento]
                   FROM [Itix].[Consultorio].[Pacientes]
                  ORDER BY [Nome]";
 
-            var pacientes = Context
-                .Connection
-                .Query<dynamic>(query);
+            var pacientes = Context.Connection.Query<dynamic>(query);
 
             return pacientes
                 .Select(paciente => new Paciente
@@ -67,9 +66,7 @@ namespace Itix.Consultorio.Infrastructure.Repositories
                   FROM [Itix].[Consultorio].[Pacientes]
                  WHERE [Id] = @Id";
 
-            var paciente = Context
-                .Connection
-                .QuerySingle<dynamic>(query, parameters);
+            var paciente = Context.Connection.QuerySingle<dynamic>(query, parameters);
 
             return new Paciente
             {
@@ -85,17 +82,13 @@ namespace Itix.Consultorio.Infrastructure.Repositories
 
             parameters.Add("Id", paciente.Id);
 
-            List<string> clauses = new List<string>();
+            parameters.Add("Nome", paciente.Nome);
+            parameters.Add("Nascimento", paciente.Nascimento);
 
-            if (!string.IsNullOrWhiteSpace(paciente.Nome))
-            {
-                clauses.Add("[Nome] = @Nome");
-                parameters.Add("Nome", paciente.Nome);
-            }
-
-            string query = $@"
+            const string query = @"
                     UPDATE [Itix].[Consultorio].[Pacientes]
-                       SET {string.Join(", ", clauses)}
+                       SET [Nome] = @Nome,
+                           [Nascimento] = @Nascimento
                      WHERE [Id] = @Id";
 
             Context.Connection.Execute(query, parameters);
@@ -107,7 +100,7 @@ namespace Itix.Consultorio.Infrastructure.Repositories
 
             parameters.Add("Id", id);
 
-            string query = "DELETE FROM [Itix].[Consultorio].[Pacientes] WHERE [Id] = @Id";
+            const string query = "DELETE FROM [Itix].[Consultorio].[Pacientes] WHERE [Id] = @Id";
 
             Context.Connection.Execute(query, parameters);
         }

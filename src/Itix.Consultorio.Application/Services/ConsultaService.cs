@@ -2,7 +2,6 @@
 using Itix.Consultorio.Application.Models.Requests;
 using Itix.Consultorio.Application.Models.Responses;
 using Itix.Consultorio.Domain.Entities;
-using Itix.Consultorio.Domain.Interfaces;
 using Itix.Consultorio.Domain.InterfacesPaciente;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +19,9 @@ namespace Itix.Consultorio.Application.Services
             this.pacienteService = pacienteService;
         }
 
-        public int Create(ConsultaRequest consulta)
+        public void Create(ConsultaRequest consulta)
         {
-            return consultaRepository.Create(new Consulta
+            consultaRepository.Create(new Consulta
             {
                 Observacoes = consulta.Observacoes,
                 DataInicial = consulta.DataInicial,
@@ -67,7 +66,8 @@ namespace Itix.Consultorio.Application.Services
                 Id = id,
                 Observacoes = consulta.Observacoes,
                 DataInicial = consulta.DataInicial,
-                DataFinal = consulta.DataFinal
+                DataFinal = consulta.DataFinal,
+                PacienteId = consulta.PacienteId
             });
         }
 
