@@ -123,6 +123,23 @@ namespace Itix.Consultorio.Infrastructure.Repositories
             Context.Connection.Execute(query, parameters);
         }
 
+        public bool DataDaConsultaEstaDisponivel(int consultaId, DateTime data)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+
+            parameters.Add("Id", consultaId);
+            parameters.Add("Data", data);
+
+            const string query = @"
+                SELECT COUNT(1) CONFLITOS
+                  FROM [Itix].[Consultorio].[Consultas]
+                 WHERE [Id] != @Id
+                   AND [DataInicial] <= @Data
+                   AND @Data <= [DataFinal]";
+
+            return Context.Connection.QuerySingle<dynamic>(query, parameters).CONFLITOS == 0;
+        }
+
         public void Dispose()
         {
             GC.SuppressFinalize(this);

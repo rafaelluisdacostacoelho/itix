@@ -19,15 +19,17 @@ namespace Itix.Consultorio.Application.Services
             this.pacienteService = pacienteService;
         }
 
-        public void Create(ConsultaRequest consulta)
+        public void Create(ConsultaRequest request)
         {
-            consultaRepository.Create(new Consulta
+            Consulta consulta = new Consulta(consultaRepository)
             {
-                Observacoes = consulta.Observacoes,
-                DataInicial = consulta.DataInicial,
-                DataFinal = consulta.DataFinal,
-                PacienteId = consulta.PacienteId
-            });
+                Observacoes = request.Observacoes,
+                DataInicial = request.DataInicial,
+                DataFinal = request.DataFinal,
+                PacienteId = request.PacienteId
+            };
+
+            consultaRepository.Create(consulta);
         }
 
         public IEnumerable<ConsultaResponse> Read()
@@ -59,16 +61,18 @@ namespace Itix.Consultorio.Application.Services
             };
         }
 
-        public void Update(int id, ConsultaRequest consulta)
+        public void Update(int id, ConsultaRequest request)
         {
-            consultaRepository.Update(new Consulta
+            Consulta consulta = new Consulta(consultaRepository)
             {
                 Id = id,
-                Observacoes = consulta.Observacoes,
-                DataInicial = consulta.DataInicial,
-                DataFinal = consulta.DataFinal,
-                PacienteId = consulta.PacienteId
-            });
+                Observacoes = request.Observacoes,
+                DataInicial = request.DataInicial,
+                DataFinal = request.DataFinal,
+                PacienteId = request.PacienteId
+            };
+
+            consultaRepository.Update(consulta);
         }
 
         public void Delete(int id)

@@ -3,6 +3,7 @@ using Itix.Consultorio.Application.Models.Requests;
 using Itix.Consultorio.Application.Models.Responses;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace Itix.Consultorio.WebApi.Controllers
@@ -39,23 +40,43 @@ namespace Itix.Consultorio.WebApi.Controllers
 
         // POST api/consultas
         [HttpPost]
-        public void Create([FromBody]ConsultaRequest request)
+        public IActionResult Create([FromBody]ConsultaRequest request)
         {
-            consultaService.Create(request);
+            try
+            {
+                consultaService.Create(request);
+
+                return Ok();
+            }
+            catch (Exception error)
+            {
+                return BadRequest(error.Message);
+            }
         }
 
         // PUT api/consultas/{id}
         [HttpPut("{id}")]
-        public void Update(int id, [FromBody]ConsultaRequest request)
+        public IActionResult Update(int id, [FromBody]ConsultaRequest request)
         {
-            consultaService.Update(id, request);
+            try
+            {
+                consultaService.Update(id, request);
+
+                return Ok();
+            }
+            catch (Exception error)
+            {
+                return BadRequest(error.Message);
+            }
         }
 
         // DELETE api/consultas/{id}
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
             consultaService.Delete(id);
+
+            return Ok();
         }
     }
 }
